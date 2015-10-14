@@ -11,7 +11,7 @@ citiesApp.controller('cityController', function($scope) {
 });*/
 
 $( "#cityfield" ).keyup(function() {
-  var url = "http://uckke690e818.colelyman.koding.io:8080/getCity?q=" + $("#cityfield").val();
+  var url = "http://loaclhost:8080/getCity?q=" + $("#cityfield").val();
   console.log(url);
   $.getJSON(url, function(data) {
     var cities;

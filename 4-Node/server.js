@@ -1,11 +1,16 @@
 var fs = require("fs");
 var url = require("url");
 var http = require("http");
-var ROOT_DIR = "/home/cole/Code/cs201r";
+var ROOT_DIR = "/home/bitnami/htdocs/cs201r/nodejs/cities";
 
 http.createServer(function (req, res) {
   var urlObj = url.parse(req.url, true, false);
   console.log(urlObj);
+  res.setHeader('Access-Control-Allow-Origin', 'http://colelyman.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   if(urlObj.pathname.indexOf("getCity") != -1) {
     console.log("in REST Service");
     var regEx = new RegExp("^" + urlObj.query["q"]);
@@ -20,7 +25,7 @@ http.createServer(function (req, res) {
           results.push({city:cities[i]});
         }
       }
-      res.writeHead(200);
+      res.writeHead(200, {"Content-Type": "text/plain"});
       res.end(JSON.stringify(results));
     });
   }
@@ -36,6 +41,6 @@ http.createServer(function (req, res) {
       res.end(data);
     });
   }
-}).listen(8080);
+}).listen(3000);
 
 console.log("Starting server");

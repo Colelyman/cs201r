@@ -11,7 +11,7 @@ citiesApp.controller('cityController', function($scope) {
 });*/
 
 $( "#cityfield" ).keyup(function() {
-  var url = "http://loaclhost:8080/getCity?q=" + $("#cityfield").val();
+  var url = "http://colelyman.com:3000/getCity?q=" + $("#cityfield").val();
   console.log(url);
   $.getJSON(url, function(data) {
     var cities;
@@ -20,7 +20,9 @@ $( "#cityfield" ).keyup(function() {
       cities += "<li> " + data[i].city;
     });
     cities += "</ul>";
-    $("#txtHint").html(cities);
+    if($("#cityfield").val != "") {
+      $("#txtHint").html(cities);
+    }
   })
   .done(function() {
     console.log("getJSON request successful.");

@@ -20,8 +20,13 @@ $( "#cityfield" ).keyup(function() {
       cities += "<li> " + data[i].city;
     });
     cities += "</ul>";
-    if($("#cityfield").val != "") {
+    if($("#cityfield").val() != "") {
+      console.log("#cityfield" + $("#cityfield").val());
       $("#txtHint").html(cities);
+    }
+    else {
+      console.log("#cityfield" + $("#cityfield").val());
+      $("#txtHint").html("Empty");
     }
   })
   .done(function() {
